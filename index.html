@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/1cd9585249.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="styles.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <img
+        src="images/logo.svg"
+        alt="logo Les Petits Plats"
+        aria-label="logo Les Petits Plats"
+      />
+      <div id="search_bar">
+        <input
+          type="search"
+          id="site-search"
+          name="q"
+          aria-label="Search through site content"
+          placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+        />
+        <button><i class="fas fa-search"></i></button>
+      </div>
+    </header>
+    <main>
+      <section id="filters"></section>
+
+      <section id="recipes_boxes"></section>
+    </main>
+    <script src="data/recipes.js"></script>
+    <script src="scripts/constructors/Recipes.js"></script>
+    <script src="scripts/pages/index.js"></script>
+  </body>
+</html>
