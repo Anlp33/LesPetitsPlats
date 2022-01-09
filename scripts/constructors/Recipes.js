@@ -1,4 +1,4 @@
-class Recipes {
+class Recipe {
   constructor(data) {
     this.id = data.id;
     this.name = data.name;
@@ -25,19 +25,30 @@ class Recipes {
         </div>
 
         <div class="details">
-          <div class="ingredients">
-         ${this.ingredients
-           .map(
-             (ingredients) =>
-               ingredients.ingredient +
-               ": " +
-               ingredients.quantity +
-               ingredients.unit +
-               "<br>"
-    )
-           .join("")}
+          <div class="ingredients">${this.ingredients
+            .map(
+              (ingredient) =>
+                `<ul>
+                 <li>${ingredient.ingredient}: ${ingredient.quantity}${ingredient.unit}</li>
+               </ul>
+               `
+            )
+       
+              //   if (ingredient.quantity == null) {
+              //     `<ul>
+              //    <li>${ingredient.ingredient}</li>
+              //  </ul>
+              //  `;
+              //   }
+              //   if (ingredient.unit == null) {
+              //     `<ul>
+              //    <li>${ingredient.ingredient}: ${ingredient.quantity}</li>
+              //  </ul>
+              //  `;
+              //   }
+              
+            .join("")}
           
-
           </div>
 
           <div class="description">${this.description}</div>

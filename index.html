@@ -26,14 +26,42 @@
           aria-label="Search through site content"
           placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
         />
-        <button><i class="fas fa-search"></i></button>
+        <button id="search_button"><i class="fas fa-search"></i></button>
       </div>
+      
+      <div id="div_keyword" class="hide">
+        <span id="keyword"></span>
+        <button id="close"><i class="far fa-times-circle"></i></button>
+      </div>
+
+    <div id="filters">
+      <div class="container">
+        <div id="ingrédients">
+          <input id="ingrédients_input" value="Ingredients"></input>
+          <button class="arrow" clicked="false"><i class="fas fa-chevron-down"></i></button>
+        </div>
+      </div>
+
+      <div class="container">
+        <div id="appareils">
+          <input id="appareil_input" value="Appareil"></input>
+          <button class="arrow" clicked="false"><i class="fas fa-chevron-down"></i></button>
+        </div>
+      </div>
+
+      <div class="container">
+        <div id="ustensiles">
+          <input id="ustensile_input" value="Ustensiles"></input>
+          <button class="arrow" clicked="false"><i class="fas fa-chevron-down"></i></button>
+        </div>
+    </div>
     </header>
+
     <main>
       <section id="filters"></section>
-
       <section id="recipes_boxes"></section>
     </main>
+
     <script src="data/recipes.js"></script>
     <script src="scripts/constructors/Recipes.js"></script>
     <script src="scripts/pages/index.js"></script>
