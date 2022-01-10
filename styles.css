@@ -63,23 +63,26 @@ ul {
 li {
   cursor: pointer;
 }
-#div_keyword {
+#tag {
   margin: 25px 0 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.classTag {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 14px;
+  color: white;
+  padding: 5px;
   border-radius: 5px;
-  width: fit-content;
-  color: white;
-  text-align: center;
-  padding: 10px;
+  margin: 0 10px 10px 10px;
 }
-#close {
-  cursor: pointer;
-  border: 0;
-  color: white;
-  background-color: inherit;
-  font-size: larger;
+.fa-times-circle {
+  padding-left: 5px;
+}
+.ingredientColor {
+  background-color: #3282f7;
 }
 #list_1 {
   display: none;

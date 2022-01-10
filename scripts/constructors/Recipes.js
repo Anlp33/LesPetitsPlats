@@ -6,11 +6,6 @@ class Recipe {
     this.ingredients = data.ingredients;
     this.description = data.description;
     this.time = data.time;
-    // this.ingredient = data.ingredient;
-    // this.quantity = data.quantity;
-    // this.unit = data.unit;
-    // this.appliance = data.appliance;
-    // this.ustensils = data.ustensils;
   }
 
   createHtml() {
@@ -26,27 +21,17 @@ class Recipe {
 
         <div class="details">
           <div class="ingredients">${this.ingredients
-            .map(
-              (ingredient) =>
-                `<ul>
-                 <li>${ingredient.ingredient}: ${ingredient.quantity}${ingredient.unit}</li>
+            .map((ingredient) => {
+              let ingredientUnit = ingredient.unit ? ingredient.unit : "";
+              let quantityUnit = ingredient.quantity
+                ? ": " + ingredient.quantity
+                : "";
+
+              return `<ul>
+                 <li>${ingredient.ingredient} ${quantityUnit}${ingredientUnit}</li>
                </ul>
-               `
-            )
-       
-              //   if (ingredient.quantity == null) {
-              //     `<ul>
-              //    <li>${ingredient.ingredient}</li>
-              //  </ul>
-              //  `;
-              //   }
-              //   if (ingredient.unit == null) {
-              //     `<ul>
-              //    <li>${ingredient.ingredient}: ${ingredient.quantity}</li>
-              //  </ul>
-              //  `;
-              //   }
-              
+               `;
+            })
             .join("")}
           
           </div>
