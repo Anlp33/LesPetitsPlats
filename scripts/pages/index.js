@@ -1,11 +1,10 @@
 const recipesBoxes = document.getElementById("recipes_boxes");
 const search = document.getElementById("site-search");
+let recipesArray = [];
 
 /**
  * Search bar event
  */
-
-let recipesArray = [];
 
 search.addEventListener("keyup", function (e) {
   const searchString = e.target.value;
@@ -49,9 +48,31 @@ search.addEventListener("keyup", function (e) {
     );
     div.innerHTML = "";
     recipesDisplay(recipesArray);
+
+    const errorMessage = document.getElementById("error_message");
+
+    if (document.querySelectorAll(".box").length === 0) {
+      errorMessage.style.display = "block";
+    } else {
+      errorMessage.style.display = "none";
+    }
+
+    // display ingredient/appareil/ustensil List from recipes that include the search string
+    ulIngredientList.innerHTML = "";
+    ulAppareilList.innerHTML = "";
+    ulUstensilList.innerHTML = "";
+    displayIngredientList(recipesArray);
+    displayAppareilList(recipesArray);
+    displayUstensilsList(recipesArray);
   } else {
     div.innerHTML = "";
     recipesDisplay(recipes);
+    ulIngredientList.innerHTML = "";
+    ulAppareilList.innerHTML = "";
+    ulUstensilList.innerHTML = "";
+    displayIngredientList(recipes);
+    displayAppareilList(recipes);
+    displayUstensilsList(recipes);
   }
 });
 
@@ -72,10 +93,15 @@ let recipesDisplay = (recipes) => {
 const init = async () => {
   recipesArray = recipes;
   recipesDisplay(recipes);
-  displayIngredientList(recipesArray);
-  displayAppareilList(recipesArray);
-  displayUstensilesList(recipesArray);
-  displayTags();
+  displayIngredientList(recipes);
+  displayAppareilList(recipes);
+  displayUstensilsList(recipes);
+  addEventIngredientList();
+  addEventAppareilList();
+  addEventUstensilsList();
+  ingredientSearch();
+  appareilSearch();
+  ustensilSearch();
 };
 
 init();

@@ -30,16 +30,18 @@ container.forEach((container) => {
  * create and display ingredient list in dropbox
  */
 
-function displayIngredientList() {
+let ingredientArray = [];
+
+function displayIngredientList(recipes) {
   let array = [];
   recipes.forEach((recipe) => {
     for (let i = 0; i < recipe.ingredients.length; i++) {
       array.push(recipe.ingredients[i].ingredient.toLowerCase());
     }
   });
-  let uniqueArray = [...new Set(array)];
 
-  uniqueArray
+  ingredientArray = [...new Set(array)];
+  ingredientArray
     .sort((a, b) => {
       if (a < b) {
         return -1;
@@ -51,21 +53,22 @@ function displayIngredientList() {
     })
     .forEach(
       (arr) =>
-        (ulIngredientList.innerHTML += `<li class="list_item" selected="false">${arr}</li>`)
+        (ulIngredientList.innerHTML += `<li class="list_item">${arr}</li>`)
     );
 }
 
 /**
  * create and display Appareil list in dropbox
  */
+let appareilArray = [];
 
-function displayAppareilList() {
+function displayAppareilList(recipes) {
   let array = [];
   recipes.forEach((recipe) => {
     array.push(recipe.appliance.toLowerCase());
   });
-  let uniqueArray = [...new Set(array)];
-  uniqueArray
+  appareilArray = [...new Set(array)];
+  appareilArray
     .sort((a, b) => {
       if (a < b) {
         return -1;
@@ -80,19 +83,20 @@ function displayAppareilList() {
     );
 }
 
-/**
- * create and display Ustensiles list in dropbox
- */
+// /**
+//  * create and display Ustensiles list in dropbox
+//  */
 
-function displayUstensilesList() {
+let ustensilArray = []
+function displayUstensilsList(recipes) {
   let array = [];
   recipes.forEach((recipe) => {
     for (let i = 0; i < recipe.ustensils.length; i++) {
       array.push(recipe.ustensils[i].toLowerCase());
     }
   });
-  let uniqueArray = [...new Set(array)];
-  uniqueArray
+  ustensilArray = [...new Set(array)];
+  ustensilArray
     .sort((a, b) => {
       if (a < b) {
         return -1;
@@ -104,7 +108,7 @@ function displayUstensilesList() {
     })
     .forEach(
       (arr) => (ulUstensilList.innerHTML += `<li class="list_item">${arr}</li>`)
-    );
+  );
 }
 
 /**
