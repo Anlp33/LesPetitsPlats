@@ -8,18 +8,30 @@ let recipesArray = [];
 
 search.addEventListener("keyup", function (e) {
   const searchString = e.target.value;
+  let recipesArray = [];
 
   if (searchString.length >= 3) {
-    recipesArray = recipes.filter(
-      (recipe) =>
-        recipe.name.toLowerCase().includes(searchString.toLowerCase()) ||
-        recipe.description.toLowerCase().includes(searchString.toLowerCase()) ||
-        recipe.ingredients.some((ingredients) =>
-          ingredients.ingredient
-            .toLowerCase()
-            .includes(searchString.toLowerCase())
-        )
-    );
+    for (let i = 0; i < recipes.length; i++) {
+      let includesName = recipes[i].name
+        .toLowerCase()
+        .includes(searchString.toLowerCase());
+
+      let includesDescription = recipes[i].description
+        .toLowerCase()
+        .includes(searchString.toLowerCase());
+
+      let includesIngredient = recipes[i].ingredients.some((ingredients) =>
+        ingredients.ingredient
+          .toLowerCase()
+          .includes(searchString.toLowerCase())
+      );
+
+      if (
+        (includesName || includesDescription || includesIngredient) === true
+      ) {
+        recipesArray.push(recipes[i]);
+      }
+    }
     div.innerHTML = "";
     recipesDisplay(recipesArray);
 
