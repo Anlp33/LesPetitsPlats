@@ -9,9 +9,8 @@ let recipesArray = [];
 search.addEventListener("keyup", function (e) {
   const searchString = e.target.value;
 
-
   if (searchString.length >= 3) {
-       recipesArray = recipes.filter(
+    recipesArray = recipes.filter(
       (recipe) =>
         recipe.name.toLowerCase().includes(searchString.toLowerCase()) ||
         recipe.description.toLowerCase().includes(searchString.toLowerCase()) ||
