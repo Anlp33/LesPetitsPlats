@@ -1,16 +1,15 @@
 const arrowBtn = document.querySelectorAll(".arrow");
 const container = document.querySelectorAll(".container");
 const ingredientInput = document.getElementById("ingrédients_input");
-const ingredientList = document.getElementById("list_1");
-const appareilList = document.getElementById("list_2");
-const ustensilList = document.getElementById("list_3");
+const appareilInput = document.getElementById("appareil_input");
+const ustensileInput = document.getElementById("ustensile_input");
 
 const ulIngredientList = document.createElement("ul");
-ulIngredientList.id = "list_1";
+ulIngredientList.id = "list_ingredient";
 const ulAppareilList = document.createElement("ul");
-ulAppareilList.id = "list_2";
+ulAppareilList.id = "list_appareil";
 const ulUstensilList = document.createElement("ul");
-ulUstensilList.id = "list_3";
+ulUstensilList.id = "list_ustensil";
 
 container.forEach((container) => {
   const containerId = container.firstElementChild.id;
@@ -53,7 +52,7 @@ function displayIngredientList(recipes) {
     })
     .forEach(
       (arr) =>
-        (ulIngredientList.innerHTML += `<li class="list_item">${arr}</li>`)
+        (ulIngredientList.innerHTML += `<li class="list_item_Ingredients">${arr}</li>`)
     );
 }
 
@@ -79,7 +78,8 @@ function displayAppareilList(recipes) {
       return 0;
     })
     .forEach(
-      (arr) => (ulAppareilList.innerHTML += `<li class="list_item">${arr}</li>`)
+      (arr) =>
+        (ulAppareilList.innerHTML += `<li class="list_item_Appareils">${arr}</li>`)
     );
 }
 
@@ -87,7 +87,7 @@ function displayAppareilList(recipes) {
 //  * create and display Ustensiles list in dropbox
 //  */
 
-let ustensilArray = []
+let ustensilArray = [];
 function displayUstensilsList(recipes) {
   let array = [];
   recipes.forEach((recipe) => {
@@ -107,43 +107,60 @@ function displayUstensilsList(recipes) {
       return 0;
     })
     .forEach(
-      (arr) => (ulUstensilList.innerHTML += `<li class="list_item">${arr}</li>`)
-  );
+      (arr) =>
+        (ulUstensilList.innerHTML += `<li class="list_item_Ustensils">${arr}</li>`)
+    );
 }
 
 /**
  * Open/close dropbox
  */
 
-arrowBtn.forEach((button) => {
-  button.addEventListener("click", function () {
-    const clickedBtn = button.getAttribute("clicked");
-    button.setAttribute("clicked", "true");
-    const buttonId = button.parentElement.firstElementChild.id;
+const ingredientBtn = document.getElementById("ingredientBtn");
+const appareilBtn = document.getElementById("appareilBtn");
+const ustensilBtn = document.getElementById("ustensilBtn");
 
-    if (clickedBtn == "false") {
-      if (buttonId === "ingrédients_input") {
-        // ingredientInput.setAttribute("value", "Rechercher un ingrédient");
-        ulIngredientList.classList.add("active");
-        ulIngredientList.style.display = "flex";
-        button.setAttribute("clicked", "true");
-      }
-      if (buttonId === "appareil_input") {
-        ulAppareilList.style.display = "flex";
-        ulAppareilList.classList.add("active");
-        button.setAttribute("clicked", "true");
-      }
-      if (buttonId === "ustensile_input") {
-        ulUstensilList.style.display = "flex";
-        ulUstensilList.classList.add("active");
-        button.setAttribute("clicked", "true");
-      }
-    } else if (clickedBtn == "true") {
-      ulIngredientList.style.display = "none";
-      ingredientInput.setAttribute("value", "Ingredients");
-      ulAppareilList.style.display = "none";
-      ulUstensilList.style.display = "none";
-      button.setAttribute("clicked", "false");
-    }
-  });
+ingredientBtn.addEventListener("click", function () {
+  if (ingredientBtn.value == "false") {
+    ingredientInput.setAttribute("placeholder", "Recherche un ingrédient");
+    ingredientInput.classList.add("originColor");
+    ulIngredientList.classList.add("active");
+    ulIngredientList.style.display = "flex";
+    ingredientBtn.setAttribute("value", "true");
+  } else {
+    ingredientInput.setAttribute("placeholder", "Ingredients");
+    ingredientInput.classList.replace("originColor", "white");
+    ulIngredientList.style.display = "none";
+    ingredientBtn.setAttribute("value", "false");
+  }
+});
+
+appareilBtn.addEventListener("click", function () {
+  if (appareilBtn.value == "false") {
+    appareilInput.setAttribute("placeholder", "Recherche un appareil");
+    appareilInput.classList.add("originColor");
+    ulAppareilList.style.display = "flex";
+    ulAppareilList.classList.add("active");
+    appareilBtn.setAttribute("value", "true");
+  } else {
+    appareilInput.setAttribute("placeholder", "Appareil");
+    appareilInput.classList.replace("originColor", "white");
+    ulAppareilList.style.display = "none";
+    appareilBtn.setAttribute("value", "false");
+  }
+});
+
+ustensilBtn.addEventListener("click", function () {
+  if (ustensilBtn.value == "false") {
+    ustensileInput.setAttribute("placeholder", "Rechercher un ustensile");
+    ustensileInput.classList.add("originColor");
+    ulUstensilList.style.display = "flex";
+    ulUstensilList.classList.add("active");
+    ustensilBtn.setAttribute("value", "true");
+  } else {
+    ustensileInput.setAttribute("placeholder", "Ustensiles");
+    ustensileInput.classList.replace("originColor", "white");
+    ulUstensilList.style.display = "none";
+    ustensilBtn.setAttribute("value", "false");
+  }
 });

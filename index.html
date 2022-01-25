@@ -28,35 +28,43 @@
         />
         <button id="search_button"><i class="fas fa-search"></i></button>
       </div>
-      <div id="error_message">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.</div>
-      <div id="tag" class="hide">      
+      <div id="error_message">
+        Aucune recette ne correspond à votre critère… vous pouvez chercher «
+        tarte aux pommes », « poisson », etc.
       </div>
+      <div id="tag" class="hide"></div>
 
-    <div id="filters">
-      <div class="container">
-        <div id="ingrédients">
-          <input id="ingrédients_input" placeholder="Ingredients"></input>
-          <button class="arrow" clicked="false"><i class="fas fa-chevron-down"></i></button>
+      <div id="filters">
+        <div class="container">
+          <div id="ingrédients">
+            <input id="ingrédients_input" placeholder="Ingredients" />
+            <button id="ingredientBtn" value="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="container">
+          <div id="appareils">
+            <input id="appareil_input" placeholder="Appareil" />
+            <button id="appareilBtn" value="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="container">
+          <div id="ustensiles">
+            <input id="ustensile_input" placeholder="Ustensiles" />
+            <button id="ustensilBtn" value="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
         </div>
       </div>
-
-      <div class="container">
-        <div id="appareils">
-          <input id="appareil_input" placeholder="Appareil"></input>
-          <button class="arrow" clicked="false"><i class="fas fa-chevron-down"></i></button>
-        </div>
-      </div>
-
-      <div class="container">
-        <div id="ustensiles">
-          <input id="ustensile_input" placeholder="Ustensiles"></input>
-          <button class="arrow" clicked="false"><i class="fas fa-chevron-down"></i></button>
-        </div>
-    </div>
     </header>
 
     <main>
-      <section id="filters"></section>
       <section id="recipes_boxes"></section>
     </main>
 

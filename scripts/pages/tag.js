@@ -8,6 +8,7 @@ function closeTag() {
       ulAppareilList.innerHTML = "";
       ulUstensilList.innerHTML = "";
 
+
       //récupérer la liste des tags
       let tagArray = [];
       const currentTag = document.querySelectorAll(".classTag");
@@ -36,7 +37,6 @@ function closeTag() {
 
       //faire la recherche avec les tags restants
       tagArray.forEach((tag) => {
-        console.log(tag);
         recipesArray = recipesArray.filter((recipe) => {
           return (
             recipe.ingredients
@@ -53,9 +53,7 @@ function closeTag() {
       //afficher tableau
 
       recipesDisplay(recipesArray);
-      displayIngredientList(recipesArray);
-      displayAppareilList(recipesArray);
-      displayUstensilsList(recipesArray);
+      displayList(recipesArray);
     });
   });
 }
@@ -68,37 +66,43 @@ function closeTag() {
 
 const tag = document.getElementById("tag");
 
+function displayList(recipesArray) {
+  ulIngredientList.innerHTML = "";
+  displayIngredientList(recipesArray);
+  ulAppareilList.innerHTML = "";
+  displayAppareilList(recipesArray);
+  ulUstensilList.innerHTML = "";
+  displayUstensilsList(recipesArray);
+  addEventIngredientList();
+  addEventAppareilList();
+  addEventUstensilsList();
+}
 function addEventIngredientList() {
-  const listIngredient = document.getElementById("list_1");
- 
+  const itemIngredient = document.querySelectorAll(".list_item_Ingredients");
 
-  listIngredient.addEventListener("click", function (e) {
-    console.log(recipesArray);
-    itemClicked = e.target.innerHTML;
+  itemIngredient.forEach((ingredient) => {
+    ingredient.addEventListener("click", function (e) {
+      const ingredientSearchBar = document.getElementById("ingrédients_input");
+      ingredientSearchBar.value = "";
+      itemClicked = e.target.innerHTML;
 
-    tag.innerHTML += `<div class="classTag ingredientColor">${itemClicked}<i class="far fa-times-circle"></i></div>`;
+      tag.innerHTML += `<div class="classTag ingredientColor">${itemClicked}<i class="far fa-times-circle"></i></div>`;
 
-    //filter array with recipes including the clicked item
-    recipesArray = recipesArray.filter((recipe) =>
-      recipe.ingredients
-        .map((ingredients) => ingredients.ingredient.toLowerCase())
-        .includes(itemClicked)
-    );
-    console.log(recipesArray);
-    div.innerHTML = "";
-    recipesDisplay(recipesArray);
+      //filter array with recipes including the clicked item
+      recipesArray = recipesArray.filter((recipe) =>
+        recipe.ingredients
+          .map((ingredients) => ingredients.ingredient.toLowerCase())
+          .includes(itemClicked)
+      );
+      div.innerHTML = "";
+      recipesDisplay(recipesArray);
 
-    //display ingredient/appareil/ustensile List from recipes that include the itemclicked
-    ulIngredientList.innerHTML = "";
-    displayIngredientList(recipesArray);
-    ulAppareilList.innerHTML = "";
-    displayAppareilList(recipesArray);
-    ulUstensilList.innerHTML = "";
-    displayUstensilsList(recipesArray);
+      //display ingredient/appareil/ustensile List from recipes that include the itemclicked
+      displayList(recipesArray);
 
-
-    //close tag
-    closeTag();
+      //close tag
+      closeTag();
+    });
   });
 }
 
@@ -107,32 +111,29 @@ function addEventIngredientList() {
  */
 
 function addEventAppareilList() {
-  const listAppareil = document.getElementById("list_2");
+  const itemAppareil = document.querySelectorAll(".list_item_Appareils");
+  itemAppareil.forEach((appareil) => {
+    appareil.addEventListener("click", function (e) {
+      const appareilSearchBar = document.getElementById("appareil_input");
+      appareilSearchBar.value = "";
+      itemClicked = e.target.innerHTML;
 
-  listAppareil.addEventListener("click", function (e) {
-    itemClicked = e.target.innerHTML;
+      tag.classList.toggle("hide");
+      tag.innerHTML += `<div class="classTag appareilColor">${itemClicked}<i class="far fa-times-circle"></i></div>`;
 
-    tag.classList.toggle("hide");
-    tag.innerHTML += `<div class="classTag appareilColor">${itemClicked}<i class="far fa-times-circle"></i></div>`;
+      //filter array with recipes including the clicked item
+      recipesArray = recipesArray.filter((recipe) =>
+        recipe.appliance.toLowerCase().includes(itemClicked)
+      );
+      div.innerHTML = "";
+      recipesDisplay(recipesArray);
 
-    //filter array with recipes including the clicked item
-    recipesArray = recipesArray.filter((recipe) =>
-      recipe.appliance.toLowerCase().includes(itemClicked)
-    );
-    console.log(recipesArray);
-    div.innerHTML = "";
-    recipesDisplay(recipesArray);
+      //display ingredient/appareil/ustensile List from recipes that include the itemclicked
+      displayList(recipesArray);
 
-    //display ingredient/appareil/ustensile List from recipes that include the itemclicked
-    ulIngredientList.innerHTML = "";
-    displayIngredientList(recipesArray);
-    ulAppareilList.innerHTML = "";
-    displayAppareilList(recipesArray);
-    ulUstensilList.innerHTML = "";
-    displayUstensilsList(recipesArray);
-
-    //close tag
-    closeTag();
+      //close tag
+      closeTag();
+    });
   });
 }
 
@@ -141,35 +142,30 @@ function addEventAppareilList() {
  */
 
 function addEventUstensilsList() {
-  const listUstensil = document.getElementById("list_3");
+  const itemUstensil = document.querySelectorAll(".list_item_Ustensils");
+  itemUstensil.forEach((ustensil) => {
+    ustensil.addEventListener("click", function (e) {
+      const ustensilSearchBar = document.getElementById("ustensile_input");
+      ustensilSearchBar.value = "";
+      itemClicked = e.target.innerHTML;
+      tag.classList.toggle("hide");
+      tag.innerHTML += `<div class="classTag ustensilColor">${itemClicked}<i class="far fa-times-circle"></i></div>`;
 
-  listUstensil.addEventListener("click", function (e) {
-    itemClicked = e.target.innerHTML;
+      // filter array with recipes including the clicked item
+      recipesArray = recipesArray.filter((recipe) =>
+        recipe.ustensils
+          .map((ustensil) => ustensil.toLowerCase())
+          .includes(itemClicked)
+      );
+      div.innerHTML = "";
+      recipesDisplay(recipesArray);
 
-    tag.classList.toggle("hide");
-    tag.innerHTML += `<div class="classTag ustensilColor">${itemClicked}<i class="far fa-times-circle"></i></div>`;
+      //display ingredient/appareil/ustensile List from recipes that include the itemclicked
+      displayList(recipesArray);
 
-    // filter array with recipes including the clicked item
-    recipesArray = recipesArray.filter((recipe) =>
-      recipe.ustensils
-        .map((ustensil) => ustensil.toLowerCase())
-        .includes(itemClicked)
-    );
-
-    console.log(recipesArray);
-    div.innerHTML = "";
-    recipesDisplay(recipesArray);
-
-    //display ingredient/appareil/ustensile List from recipes that include the itemclicked
-    ulIngredientList.innerHTML = "";
-    displayIngredientList(recipesArray);
-    ulAppareilList.innerHTML = "";
-    displayAppareilList(recipesArray);
-    ulUstensilList.innerHTML = "";
-    displayUstensilsList(recipesArray);
-
-    //close tag
-    closeTag();
+      //close tag
+      closeTag();
+    });
   });
 }
 
@@ -181,24 +177,16 @@ function ingredientSearch() {
   const ingredientSearchBar = document.getElementById("ingrédients_input");
 
   ingredientSearchBar.addEventListener("keyup", function (e) {
+    const itemIngredient = document.querySelectorAll(".list_item_Ingredients");
     const searchString = e.target.value;
 
-    if (searchString.length >= 3) {
-      ingredientArray = ingredientArray.filter((arr) =>
-        arr.includes(searchString.toLowerCase())
-      );
-
-      ulIngredientList.innerHTML = "";
-      ingredientArray.forEach(
-        (array) =>
-          (ulIngredientList.innerHTML += `<li class="list_ingredient">${array}</li>`)
-      );
-      console.log(recipesArray);
-      console.log(ingredientArray);
-    } else {
-      ulIngredientList.innerHTML = "";
-      displayIngredientList(recipes);
-    }
+    itemIngredient.forEach((ingredient) => {
+      if (ingredient.innerHTML.toLowerCase().includes(searchString)) {
+        ingredient.style.display = "block";
+      } else {
+        ingredient.style.display = "none";
+      }
+    });
   });
 }
 
@@ -210,21 +198,16 @@ function appareilSearch() {
   const appareilSearchBar = document.getElementById("appareil_input");
 
   appareilSearchBar.addEventListener("keyup", function (e) {
+    const itemAppareil = document.querySelectorAll(".list_item_Appareils");
     const searchString = e.target.value;
-    if (searchString.length >= 3) {
-      appareilArray = appareilArray.filter((arr) =>
-        arr.includes(searchString.toLowerCase())
-      );
-      console.log(appareilArray);
-      ulAppareilList.innerHTML = "";
-      appareilArray.forEach(
-        (array) =>
-          (ulAppareilList.innerHTML += `<li class="list_appareil">${array}</li>`)
-      );
-    } else {
-      ulAppareilList.innerHTML = "";
-      displayAppareilList(recipes);
-    }
+
+    itemAppareil.forEach((appareil) => {
+      if (appareil.innerHTML.toLowerCase().includes(searchString)) {
+        appareil.style.display = "block";
+      } else {
+        appareil.style.display = "none";
+      }
+    });
   });
 }
 /**
@@ -236,20 +219,14 @@ function ustensilSearch() {
 
   ustensilSearchBar.addEventListener("keyup", function (e) {
     const searchString = e.target.value;
+    const itemUstensil = document.querySelectorAll(".list_item_Ustensils");
 
-    if (searchString.length >= 3) {
-      ustensilArray = ustensilArray.filter((arr) =>
-        arr.includes(searchString.toLowerCase())
-      );
-
-      ulUstensilList.innerHTML = "";
-      ustensilArray.forEach(
-        (array) =>
-          (ulAppareilList.innerHTML += `<li class="list_ustensil">${array}</li>`)
-      );
-    } else {
-      ulUstensilList.innerHTML = "";
-      displayUstensilsList(recipes);
-    }
+    itemUstensil.forEach((ustensil) => {
+      if (ustensil.innerHTML.toLowerCase().includes(searchString)) {
+        ustensil.style.display = "block";
+      } else {
+        ustensil.style.display = "none";
+      }
+    });
   });
 }
