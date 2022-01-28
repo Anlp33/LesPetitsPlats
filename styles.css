@@ -51,7 +51,7 @@ li {
   display: none;
   font-family: "Lato", sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 10px;
   font-style: italic;
 }
@@ -81,7 +81,7 @@ li {
   justify-content: flex-start;
   font-size: 16px;
   position: absolute;
-  top: 230px;
+  top: 250px;
 }
 .ingredientColor {
   background-color: #3282f7;
