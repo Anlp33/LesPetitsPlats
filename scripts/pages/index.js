@@ -8,10 +8,10 @@ let recipesArray = [];
 
 search.addEventListener("keyup", function (e) {
   const searchString = e.target.value;
-
+  const errorMessage = document.getElementById("error_message");
 
   if (searchString.length >= 3) {
-       recipesArray = recipes.filter(
+    recipesArray = recipes.filter(
       (recipe) =>
         recipe.name.toLowerCase().includes(searchString.toLowerCase()) ||
         recipe.description.toLowerCase().includes(searchString.toLowerCase()) ||
@@ -23,8 +23,6 @@ search.addEventListener("keyup", function (e) {
     );
     div.innerHTML = "";
     recipesDisplay(recipesArray);
-
-    const errorMessage = document.getElementById("error_message");
 
     if (document.querySelectorAll(".box").length === 0) {
       errorMessage.style.display = "block";
@@ -38,12 +36,14 @@ search.addEventListener("keyup", function (e) {
     ulUstensilList.innerHTML = "";
     displayList(recipesArray);
   } else {
+    recipesArray = recipes;
+    errorMessage.style.display = "none";
     div.innerHTML = "";
-    recipesDisplay(recipes);
+    recipesDisplay(recipesArray);
     ulIngredientList.innerHTML = "";
     ulAppareilList.innerHTML = "";
     ulUstensilList.innerHTML = "";
-    displayList(recipes);
+    displayList(recipesArray);
   }
 });
 

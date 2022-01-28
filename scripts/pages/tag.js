@@ -102,6 +102,7 @@ function addEventIngredientList() {
           .includes(itemClicked)
       );
       div.innerHTML = "";
+      console.log(recipesArray);
       recipesDisplay(recipesArray);
 
       //display ingredient/appareil/ustensile List from recipes that include the itemclicked
