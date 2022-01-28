@@ -39,7 +39,7 @@ function displayIngredientList(recipes) {
     }
   });
 
-  ingredientArray = [...new Set(array)];
+  ingredientArray = [...new Set(array)]; //this will remove duplicates
   ingredientArray
     .sort((a, b) => {
       if (a < b) {
@@ -51,8 +51,8 @@ function displayIngredientList(recipes) {
       return 0;
     })
     .forEach(
-      (arr) =>
-        (ulIngredientList.innerHTML += `<li class="list_item_Ingredients">${arr}</li>`)
+      (ingredient) =>
+        (ulIngredientList.innerHTML += `<li class="list_item_Ingredients">${ingredient}</li>`)
     );
 }
 
@@ -66,7 +66,7 @@ function displayAppareilList(recipes) {
   recipes.forEach((recipe) => {
     array.push(recipe.appliance.toLowerCase());
   });
-  appareilArray = [...new Set(array)];
+  appareilArray = [...new Set(array)]; //this will remove duplicates
   appareilArray
     .sort((a, b) => {
       if (a < b) {
@@ -78,8 +78,8 @@ function displayAppareilList(recipes) {
       return 0;
     })
     .forEach(
-      (arr) =>
-        (ulAppareilList.innerHTML += `<li class="list_item_Appareils">${arr}</li>`)
+      (appareil) =>
+        (ulAppareilList.innerHTML += `<li class="list_item_Appareils">${appareil}</li>`)
     );
 }
 
@@ -95,7 +95,8 @@ function displayUstensilsList(recipes) {
       array.push(recipe.ustensils[i].toLowerCase());
     }
   });
-  ustensilArray = [...new Set(array)];
+  ustensilArray = [...new Set(array)]; //this will remove duplicates
+
   ustensilArray
     .sort((a, b) => {
       if (a < b) {
@@ -107,8 +108,8 @@ function displayUstensilsList(recipes) {
       return 0;
     })
     .forEach(
-      (arr) =>
-        (ulUstensilList.innerHTML += `<li class="list_item_Ustensils">${arr}</li>`)
+      (ustensil) =>
+        (ulUstensilList.innerHTML += `<li class="list_item_Ustensils">${ustensil}</li>`)
     );
 }
 
