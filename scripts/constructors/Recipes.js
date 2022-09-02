@@ -12,6 +12,11 @@ class Recipe {
     return `
     <article class="box">
        <div class="image">
+       <img
+        src="./images/logo.svg"
+        alt="logo Les Petits Plats"
+        aria-label="logo Les Petits Plats"
+      />
        </div>
       <div class="text">
         <div class="title">

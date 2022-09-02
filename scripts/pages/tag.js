@@ -15,9 +15,9 @@ function closeTag() {
       currentTag.forEach((tag) => tagArray.push(tag.innerText));
 
       //CSS style
-      if (currentTag.length === 0) {
-        filters.style.top = "250px";
-      }
+      // if (currentTag.length === 0) {
+      //   filters.style.top = "250px";
+      // }
 
       //faire la recherche principale en fonction de la barre de recherche
       const searchString = document.getElementById("site-search").value;
@@ -88,7 +88,6 @@ function addEventIngredientList() {
 
   itemIngredient.forEach((ingredient) => {
     ingredient.addEventListener("click", function (e) {
-      filters.style.top = "295px";
       const ingredientSearchBar = document.getElementById("ingrédients_input");
       ingredientSearchBar.value = "";
       itemClicked = e.target.innerHTML;
@@ -122,7 +121,6 @@ function addEventAppareilList() {
   const itemAppareil = document.querySelectorAll(".list_item_Appareils");
   itemAppareil.forEach((appareil) => {
     appareil.addEventListener("click", function (e) {
-      filters.style.top = "295px";
       const appareilSearchBar = document.getElementById("appareil_input");
       appareilSearchBar.value = "";
       itemClicked = e.target.innerHTML;
@@ -154,7 +152,6 @@ function addEventUstensilsList() {
   const itemUstensil = document.querySelectorAll(".list_item_Ustensils");
   itemUstensil.forEach((ustensil) => {
     ustensil.addEventListener("click", function (e) {
-      filters.style.top = "295px";
       const ustensilSearchBar = document.getElementById("ustensile_input");
       ustensilSearchBar.value = "";
       itemClicked = e.target.innerHTML;

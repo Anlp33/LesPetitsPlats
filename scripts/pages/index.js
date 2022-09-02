@@ -8,6 +8,7 @@ let recipesArray = [];
 
 search.addEventListener("keyup", function (e) {
   const searchString = e.target.value;
+  console.log(e.target.id)
   const errorMessage = document.getElementById("error_message");
 
   if (searchString.length >= 3) {
